@@ -186,40 +186,43 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-canvas)] text-[var(--text-primary)]">
+      {/* Telkom University Signature Top Red Highlight */}
+      <div className="h-1.5 w-full bg-gradient-to-r from-[var(--brand-primary)] via-[var(--accent-amber)] to-[var(--brand-primary)]" />
+
       {/* Top Bar */}
-      <header className="sticky top-0 z-30 border-b border-[var(--border-subtle)] bg-[var(--bg-surface)]">
+      <header className="sticky top-0 z-30 border-b border-[var(--border-default)] bg-[var(--bg-surface)]/95 backdrop-blur-md shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-3 py-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 py-3.5">
             {/* Brand & Identity */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-[var(--accent-navy)] text-white flex items-center justify-center font-mono font-bold text-base shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-[var(--brand-primary)] text-white flex items-center justify-center font-mono font-extrabold text-base tracking-tight shrink-0 shadow-sm border border-black/10">
                 MH
               </div>
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-bold text-base tracking-tight text-[var(--text-primary)]">
+                  <span className="font-extrabold text-base tracking-tight text-[var(--text-primary)]">
                     MagangHub Inspector
                   </span>
-                  <span className="px-2 py-0.5 text-[11px] font-mono font-semibold rounded bg-[var(--status-emerald-soft)] text-[var(--status-emerald)] border border-[var(--status-emerald)]">
-                    PERSONAL EDITION
+                  <span className="px-2 py-0.5 text-[10px] font-mono font-bold rounded-md bg-[var(--brand-soft)] text-[var(--brand-primary)] border border-[var(--brand-border)]">
+                    EDISI SMB TELKOM
                   </span>
                 </div>
-                <p className="text-xs text-[var(--text-muted)]">
-                  Inspektor API Langsung maganghub.kemnaker.go.id (Tanpa Paywall & Tanpa Antrean)
+                <p className="text-xs text-[var(--text-muted)] font-medium">
+                  Portal Inspeksi Seleksi &amp; Direktori Lowongan Magang Nasional Kemnaker RI
                 </p>
               </div>
             </div>
 
             {/* Right Controls */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5">
               <button
                 type="button"
                 onClick={() => setIsAuthModalOpen(true)}
-                className="min-h-11 px-3.5 py-2 rounded-lg text-xs font-semibold bg-[var(--accent-navy)] text-white hover:bg-[var(--accent-navy-hover)] transition-colors flex items-center gap-1.5"
+                className="min-h-11 px-4 py-2 rounded-lg text-xs font-bold bg-[var(--brand-primary)] text-white hover:bg-[var(--brand-primary-hover)] transition-colors flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <span>+ Hubungkan Akun SIAPkerja</span>
                 {accounts.length > 0 && (
-                  <span className="px-1.5 py-0.5 rounded bg-white/20 font-mono text-[11px]">
+                  <span className="px-1.5 py-0.5 rounded-full bg-white/25 font-mono text-[10px] font-bold">
                     {accounts.length}
                   </span>
                 )}
@@ -232,9 +235,9 @@ export default function HomePage() {
                   theme === "light" ? "Aktifkan mode gelap" : "Aktifkan mode terang"
                 }
                 title={theme === "light" ? "Mode Gelap" : "Mode Terang"}
-                className="min-h-11 min-w-11 px-3 py-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-elevated)] hover:bg-[var(--bg-canvas)] text-xs font-medium text-[var(--text-secondary)] transition-colors flex items-center justify-center gap-1.5"
+                className="min-h-11 min-w-11 px-3 py-2 rounded-lg border border-[var(--border-default)] bg-[var(--bg-subtle)] hover:bg-[var(--bg-elevated)] text-xs font-semibold text-[var(--text-secondary)] transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <span className="font-mono font-semibold">
+                <span className="font-mono text-xs font-bold">
                   {theme === "light" ? "DARK" : "LIGHT"}
                 </span>
               </button>
@@ -244,16 +247,16 @@ export default function HomePage() {
           {/* Primary Navigation Tabs */}
           <nav
             aria-label="Navigasi Workspace Utama"
-            className="flex items-center gap-2 border-t border-[var(--border-subtle)] pt-2 pb-2 overflow-x-auto"
+            className="flex items-center gap-2 border-t border-[var(--border-default)] pt-2 pb-2 overflow-x-auto"
           >
             <button
               type="button"
               onClick={() => setActiveTab("applications")}
               aria-current={activeTab === "applications" ? "page" : undefined}
-              className={`min-h-11 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap ${
+              className={`min-h-11 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-colors flex items-center gap-2 whitespace-nowrap cursor-pointer ${
                 activeTab === "applications"
-                  ? "bg-[var(--accent-navy)] text-white"
-                  : "text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)]"
+                  ? "bg-[var(--brand-primary)] text-white shadow-xs"
+                  : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
               }`}
             >
               <span>Inspektor Status Lamaran</span>
@@ -262,14 +265,14 @@ export default function HomePage() {
                   className={`px-1.5 py-0.5 rounded text-[11px] font-mono ${
                     activeTab === "applications"
                       ? "bg-white/20 text-white"
-                      : "bg-[var(--bg-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
+                      : "bg-[var(--bg-elevated)] text-[var(--text-secondary)] border border-[var(--border-default)]"
                   }`}
                 >
                   {accounts.reduce((acc, item) => acc + item.applications.length, 0)}
                 </span>
               )}
               {totalEarlySignals > 0 && (
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-[var(--status-emerald)] text-white">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-extrabold bg-[var(--status-emerald)] text-white shadow-xs">
                   {totalEarlySignals} SINYAL
                 </span>
               )}
@@ -279,21 +282,21 @@ export default function HomePage() {
               type="button"
               onClick={() => setActiveTab("vacancies")}
               aria-current={activeTab === "vacancies" ? "page" : undefined}
-              className={`min-h-11 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors flex items-center gap-2 whitespace-nowrap ${
+              className={`min-h-11 px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-colors flex items-center gap-2 whitespace-nowrap cursor-pointer ${
                 activeTab === "vacancies"
-                  ? "bg-[var(--accent-navy)] text-white"
-                  : "text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)]"
+                  ? "bg-[var(--brand-primary)] text-white shadow-xs"
+                  : "text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]"
               }`}
             >
-              <span>Eksplorasi Lowongan & Rasio Kuota Live</span>
+              <span>Eksplorasi Lowongan &amp; Kuota Live</span>
               <span
-                className={`px-1.5 py-0.5 rounded text-[10px] font-mono ${
+                className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold ${
                   activeTab === "vacancies"
                     ? "bg-white/20 text-white"
-                    : "bg-[var(--status-sky-soft)] text-[var(--status-sky)]"
+                    : "bg-[var(--brand-soft)] text-[var(--brand-primary)] border border-[var(--brand-border)]"
                 }`}
               >
-                API PUBLIK
+                API RESMI KEMNAKER
               </span>
             </button>
           </nav>
