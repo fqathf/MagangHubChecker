@@ -17,8 +17,6 @@ interface AuthModalProps {
   }) => void;
 }
 
-const CONSOLE_SNIPPET = `copy(document.cookie.split('; ').find(r => r.startsWith('naco_access_token='))?.split('=')[1] || '')`;
-
 export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -27,7 +25,6 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
   const [tokenInput, setTokenInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [copiedSnippet, setCopiedSnippet] = useState(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -42,16 +39,6 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
   }, [isOpen, loading, onClose]);
 
   if (!isOpen) return null;
-
-  const handleCopySnippet = async () => {
-    try {
-      await navigator.clipboard.writeText(CONSOLE_SNIPPET);
-      setCopiedSnippet(true);
-      setTimeout(() => setCopiedSnippet(false), 3000);
-    } catch {
-      setError("Gagal menyalin perintah otomatis. Silakan blok dan salin kode secara manual.");
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -185,18 +172,14 @@ export function AuthModal({ isOpen, onClose, onSuccess }: AuthModalProps) {
               </li>
             </ol>
 
-            {/* Quick alternative snippet */}
-            <div className="pt-2 border-t border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-2">
-              <span className="text-[11px] text-[var(--text-muted)]">
-                Opsi Cepat: Salin token otomatis melalui tab Console DevTools:
-              </span>
-              <button
-                type="button"
-                onClick={handleCopySnippet}
-                className="px-2.5 py-1.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-elevated)] hover:bg-[var(--bg-surface)] text-[11px] font-mono font-semibold text-[var(--text-primary)] transition-colors inline-flex items-center gap-1.5"
-              >
-                {copiedSnippet ? "Tersalin ke Clipboard!" : "Salin Perintah Console"}
-              </button>
+            {/* Explanatory note about HttpOnly & Network alternative */}
+            <div className="pt-2.5 border-t border-[var(--border-subtle)] space-y-1.5 text-[11px] text-[var(--text-muted)] leading-relaxed">
+              <p>
+                <strong className="text-[var(--text-secondary)]">Mengapa lewat tab Application?</strong> Cookie <code className="font-mono text-[10px]">naco_access_token</code> dilindungi dengan atribut <em>HttpOnly</em> oleh server Kemnaker, sehingga peramban secara otomatis melarang script JavaScript di tab Console membacanya. Tab Application di DevTools dapat membacanya langsung.
+              </p>
+              <p>
+                <strong className="text-[var(--text-secondary)]">Alternatif via tab Network:</strong> Buka tab Network &rarr; refresh halaman &rarr; klik salah satu request ke <code className="font-mono text-[10px]">api.kemnaker.go.id</code> &rarr; buka bagian Headers &rarr; Request Headers &rarr; salin nilai header <code className="font-mono text-[10px]">Authorization: Bearer eyJ...</code>.
+              </p>
             </div>
           </div>
 

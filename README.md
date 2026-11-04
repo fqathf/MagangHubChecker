@@ -43,10 +43,8 @@ Untuk memeriksa status lamaran akun Anda:
 6. Klik ganda pada kolom **Value** dan salin seluruh teks token (teks panjang yang berawalan `eyJ...`).
 7. Buka web MagangHub Checker, klik **+ Hubungkan Akun SIAPkerja**, tempelkan token tersebut, dan klik **Periksa Sesi & Simpan Akun**.
 
-> **Tips Cepat:** Anda juga dapat menyalin token secara otomatis dengan membuka tab **Console** di DevTools lalu menjalankan perintah:
-> ```js
-> copy(document.cookie.split('; ').find(r => r.startsWith('naco_access_token='))?.split('=')[1] || '')
-> ```
+> **Catatan Teknis (Mengapa tidak bisa via Console?):**  
+> Cookie `naco_access_token` dilindungi dengan atribut **`HttpOnly`** oleh server Kemnaker demi keamanan. Atribut ini membuat peramban secara otomatis melarang script JavaScript (`document.cookie`) di tab Console untuk membacanya. Oleh karena itu, token harus disalin manual melalui tab **Application > Cookies** atau melalui tab **Network** (klik salah satu request `api.kemnaker.go.id` &rarr; buka tab **Headers** &rarr; salin nilai `Authorization: Bearer eyJ...`).
 
 ---
 
