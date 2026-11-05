@@ -186,7 +186,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-canvas)] text-[var(--text-primary)]">
-      {/* Telkom University Signature Top Red Highlight */}
+      {/* Signature Top Red Highlight */}
       <div className="h-1.5 w-full bg-gradient-to-r from-[var(--brand-primary)] via-[var(--accent-amber)] to-[var(--brand-primary)]" />
 
       {/* Top Bar */}
@@ -204,7 +204,7 @@ export default function HomePage() {
                     MagangHub Inspector
                   </span>
                   <span className="px-2 py-0.5 text-[10px] font-mono font-bold rounded-md bg-[var(--brand-soft)] text-[var(--brand-primary)] border border-[var(--brand-border)]">
-                    EDISI SMB TELKOM
+                    PERSONAL EDITION
                   </span>
                 </div>
                 <p className="text-xs text-[var(--text-muted)] font-medium">
